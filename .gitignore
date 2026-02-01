@@ -1,0 +1,24 @@
+# Build artifacts
+objects.x86_64-*
+*.o
+HaikuChat
+*.rsrc
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Settings and cache
+.config/
+*.log
+
+# Build output
+build/
+dist/

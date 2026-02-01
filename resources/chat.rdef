@@ -1,0 +1,13 @@
+resource app_signature "application/x-vnd.HaikuChat";
+
+resource app_flags B_SINGLE_LAUNCH;
+
+resource app_version {
+	major  = 1,
+	middle = 0,
+	minor  = 0,
+	variety = B_APPV_FINAL,
+	internal = 0,
+	short_info = "HaikuChat",
+	long_info = "AI Chat Client for Haiku"
+};
