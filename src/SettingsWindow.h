@@ -21,6 +21,7 @@ public:
 
 private:
 	void				_SaveSettings();
+	void				_ResetSettings();
 	void				_UpdateFieldsForApiType(ApiType type);
 	void				_FetchModels();
 	void				_PopulateModels(BMessage* message);
@@ -39,6 +40,7 @@ private:
 	BButton*			fFetchModelsButton;
 	BCheckBox*			fDarkThemeCheckbox;
 	BStringView*		fStatusView;
+	BButton*			fResetButton;
 	BButton*			fSaveButton;
 	BButton*			fCancelButton;
 };

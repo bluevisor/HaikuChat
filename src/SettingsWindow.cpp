@@ -10,9 +10,9 @@
 
 SettingsWindow::SettingsWindow(BRect frame, Settings* settings)
 	:
-	BWindow(BRect(frame.left + 50, frame.top + 50, frame.left + 500, frame.top + 450),
+	BWindow(BRect(frame.left + 50, frame.top + 50, frame.left + 700, frame.top + 500),
 		"Settings", B_TITLED_WINDOW,
-		B_NOT_ZOOMABLE | B_AUTO_UPDATE_SIZE_LIMITS | B_CLOSE_ON_ESCAPE),
+		B_NOT_ZOOMABLE | B_CLOSE_ON_ESCAPE),
 	fSettings(settings),
 	fLLMClient(NULL),
 	fCurrentApiType(settings->GetApiType())
@@ -59,6 +59,7 @@ SettingsWindow::SettingsWindow(BRect frame, Settings* settings)
 	fStatusView->SetExplicitMinSize(BSize(200, B_SIZE_UNSET));
 
 	// Buttons
+	fResetButton = new BButton("Reset to Defaults", new BMessage(kMsgSettingsReset));
 	fSaveButton = new BButton("Save", new BMessage(kMsgSettingsSave));
 	fCancelButton = new BButton("Cancel", new BMessage(kMsgSettingsCancel));
 
@@ -84,6 +85,7 @@ SettingsWindow::SettingsWindow(BRect frame, Settings* settings)
 		.AddGlue()
 		.Add(new BSeparatorView(B_HORIZONTAL))
 		.AddGroup(B_HORIZONTAL)
+			.Add(fResetButton)
 			.AddGlue()
 			.Add(fCancelButton)
 			.Add(fSaveButton)
@@ -157,6 +159,10 @@ SettingsWindow::MessageReceived(BMessage* message)
 			Quit();
 			break;
 
+		case kMsgSettingsReset:
+			_ResetSettings();
+			break;
+
 		case kMsgSettingsCancel:
 			Quit();
 			break;
@@ -206,6 +212,25 @@ SettingsWindow::_SaveSettings()
 			}
 		}
 	}
+}
+
+
+void
+SettingsWindow::_ResetSettings()
+{
+	// Clear API keys and endpoints for current type
+	fSettings->SetApiEndpointFor(fCurrentApiType, "");
+	fSettings->SetApiKeyFor(fCurrentApiType, "");
+	fSettings->SetModelFor(fCurrentApiType, "");
+
+	// Update UI fields to reflect reset
+	fEndpointField->SetText("");
+	fApiKeyField->SetText("");
+
+	// Clear and reload cached models (which will now be empty)
+	_LoadCachedModels();
+
+	fStatusView->SetText("Settings reset to defaults");
 }
 
 

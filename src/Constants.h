@@ -11,6 +11,7 @@ enum {
 	kMsgShowSettings = 'sset',
 	kMsgShowAbout = 'abot',
 	kMsgSettingsSave = 'stsv',
+	kMsgSettingsReset = 'strs',
 	kMsgSettingsCancel = 'stcn',
 	kMsgLLMChunk = 'llmc',
 	kMsgLLMDone = 'llmd',
@@ -41,7 +42,7 @@ const rgb_color kDarkSidebarColor = {23, 23, 23, 255};             // #171717
 
 // Message bubbles
 const rgb_color kDarkUserBubbleColor = {47, 47, 47, 255};          // #2f2f2f
-const rgb_color kDarkAssistantBubbleColor = {33, 33, 33, 255};     // Same as background
+const rgb_color kDarkAssistantBubbleColor = {40, 40, 40, 255};     // #282828 - slightly lighter than background
 
 // Text colors
 const rgb_color kDarkUserTextColor = {236, 236, 236, 255};         // #ececec
