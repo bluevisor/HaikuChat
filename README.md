@@ -1,6 +1,6 @@
 # HaikuChat
 
-A very early version of native AI chat client for Haiku OS with support for OpenAI, Claude, and Gemini APIs.
+A ChatGPT inspired native AI chat client for Haiku OS with support for OpenAI, Claude, and Gemini APIs.
 
 ## Features
 
